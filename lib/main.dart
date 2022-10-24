@@ -18,8 +18,20 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-class WelcomePage extends StatelessWidget {
+
+String imagePath1 = 'images/conifer-1083.png';
+String imagePath2 = 'images/jaconda-41.png';
+
+String currentPath = imagePath1;
+
+class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
+
+  @override
+  State<WelcomePage> createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,10 +48,19 @@ class WelcomePage extends StatelessWidget {
            style: ElevatedButton.styleFrom(
             backgroundColor: Colors.orange,
            ),
-          onPressed: (){}, 
+          onPressed: (){
+            setState(() {
+                if(currentPath == imagePath1){
+              currentPath = imagePath2;
+            }else{
+              currentPath = imagePath1;
+            }
+            });
+          
+          }, 
         child: const Text("click")
         ),
-        Image.asset('images/conifer-1083.png'),
+        Image.asset(currentPath),
       ],
     ),
   
