@@ -32,6 +32,7 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  int numberOfImage = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,29 +42,45 @@ class _WelcomePageState extends State<WelcomePage> {
         backgroundColor: Colors.yellow,
       ),
       body: 
-   Center(
-    child: Column(
-      children: [
-        ElevatedButton(
-           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.orange,
-           ),
-          onPressed: (){
+   SingleChildScrollView(
+     child: Center(
+      child: Column(
+        children: [
+           const SizedBox(height: 50.0),
+          ElevatedButton(
+             style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.orange,
+             ),
+            onPressed: (){
+              setState(() {
+                  if(currentPath == imagePath1){
+                currentPath = imagePath2;
+              }else{
+                currentPath = imagePath1;
+              }
+              });
+            
+            }, 
+          child: const Text("click")
+          ),
+           ElevatedButton(onPressed: (){
             setState(() {
-                if(currentPath == imagePath1){
-              currentPath = imagePath2;
-            }else{
-              currentPath = imagePath1;
-            }
+              numberOfImage = numberOfImage +1;
             });
+           },
+            child: const Text('Add an image'), ),
+           const  SizedBox(height: 50.0),
           
-          }, 
-        child: const Text("click")
-        ),
-        Image.asset(currentPath),
-      ],
-    ),
-  
+          Column(
+            children: List.generate(
+              numberOfImage,
+             (index) => Image.asset(currentPath),),
+          ),
+
+        ],
+      ),
+     
+     ),
    )
     );
   } 
