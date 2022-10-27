@@ -46,29 +46,39 @@ class _WelcomePageState extends State<WelcomePage> {
      child: Center(
       child: Column(
         children: [
-           const SizedBox(height: 50.0),
-          ElevatedButton(
-             style: ElevatedButton.styleFrom(
+           
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                 style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                 ),
+                onPressed: (){
+                  setState(() {
+                      if(currentPath == imagePath1){
+                    currentPath = imagePath2;
+                  }else{
+                    currentPath = imagePath1;
+                  }
+                  });
+                
+                }, 
+              child: const Text("click")
+              ),
+               const SizedBox(width: 50.0,),
+           ElevatedButton( style: ElevatedButton.styleFrom(
               backgroundColor: Colors.orange,
              ),
-            onPressed: (){
-              setState(() {
-                  if(currentPath == imagePath1){
-                currentPath = imagePath2;
-              }else{
-                currentPath = imagePath1;
-              }
-              });
-            
-            }, 
-          child: const Text("click")
-          ),
-           ElevatedButton(onPressed: (){
+             onPressed: (){
             setState(() {
-              numberOfImage = numberOfImage +1;
+              numberOfImage ++;
             });
            },
-            child: const Text('Add an image'), ),
+            child: Text('Add an image $numberOfImage'), ),
+            ],
+          ),
+         
            const  SizedBox(height: 50.0),
           
           Column(
