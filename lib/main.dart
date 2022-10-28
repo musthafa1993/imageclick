@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tutorial_beginer/pages/login_page.dart';
+import 'package:flutter_tutorial_beginer/pages/register_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,10 +21,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-String imagePath1 = 'images/conifer-1083.png';
-String imagePath2 = 'images/jaconda-41.png';
-
-String currentPath = imagePath1;
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -55,38 +53,30 @@ class _WelcomePageState extends State<WelcomePage> {
                   backgroundColor: Colors.orange,
                  ),
                 onPressed: (){
-                  setState(() {
-                      if(currentPath == imagePath1){
-                    currentPath = imagePath2;
-                  }else{
-                    currentPath = imagePath1;
-                  }
-                  });
-                
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                    return const LoginPage();
+                  }),);
                 }, 
-              child: const Text("click")
+              child: const Text("Login"),
               ),
                const SizedBox(width: 50.0,),
            ElevatedButton( style: ElevatedButton.styleFrom(
               backgroundColor: Colors.orange,
              ),
              onPressed: (){
-            setState(() {
-              numberOfImage ++;
-            });
-           },
-            child: Text('Add an image $numberOfImage'), ),
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context){
+                  return const RegisterPage();
+                }),
+                );
+             },
+            child: const Text('Register'), ),
             ],
           ),
          
            const  SizedBox(height: 50.0),
           
-          Column(
-            children: List.generate(
-              numberOfImage,
-             (index) => Image.asset(currentPath),),
-          ),
-
+          Image.asset('Images/urban-206.png')
         ],
       ),
      
